@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Light Editorial Palette */
+  --luxury-bg: 250 248 245;           /* #FAF8F5 */
+  --luxury-card: 255 255 255;         /* #FFFFFF */
+  --luxury-frame: 246 243 236;        /* #F6F3EC */
+  --luxury-border: 231 226 216;       /* #E7E2D8 */
+  --luxury-border-light: 240 236 228; /* #F0ECE4 */
+  --luxury-text: 23 22 21;            /* #171615 */
+  --luxury-muted: 102 98 91;          /* #66625B */
+  --luxury-subtle: 155 149 140;       /* #9B958C */
+  --luxury-accent: 139 129 114;       /* #8B8172 */
+  --luxury-accent-hover: 114 105 92;  /* #72695C */
+  --luxury-highlight: 250 246 239;    /* #FAF6EF */
+  --luxury-black: 17 16 15;           /* #11100F */
+}
+
+html.dark {
+  /* Dark Luxury Editorial Palette */
+  --luxury-bg: 15 14 13;              /* #0F0E0D: Deep luxury dark canvas */
+  --luxury-card: 22 21 20;            /* #161514: Elevated dark card */
+  --luxury-frame: 28 26 24;           /* #1C1A18: Product frame */
+  --luxury-border: 44 42 39;          /* #2C2A27: Restrained dark border */
+  --luxury-border-light: 34 32 30;    /* #22201E */
+  --luxury-text: 246 244 240;         /* #F6F4F0: Crisp, elegant white/ivory text */
+  --luxury-muted: 168 162 153;        /* #A8A299: Readable secondary text */
+  --luxury-subtle: 120 114 105;       /* #787269: Tertiary metadata */
+  --luxury-accent: 202 188 164;       /* #CABCA4: Warm champagne taupe */
+  --luxury-accent-hover: 225 214 195; /* #E1D6C3 */
+  --luxury-highlight: 30 28 26;       /* #1E1C1A */
+  --luxury-black: 246 244 240;        /* #F6F4F0: Inverted for high-contrast action buttons */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: rgb(var(--luxury-bg));
+  color: rgb(var(--luxury-text));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+/* Subtle luxury editorial selection */
+::selection {
+  background-color: #E8E2D5;
+  color: #171615;
+}
+
+html.dark ::selection {
+  background-color: #38342E;
+  color: #F6F4F0;
+}
+
+/* Restrained scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--luxury-bg));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--luxury-border));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--luxury-accent));
+}
+
+/* Editorial typography utilities */
+.font-editorial-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+.font-editorial-sans {
+  font-family: var(--font-sans);
+}
+
+.text-editorial-caption {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(var(--luxury-accent));
+}
+
+/* Clean focus visible for accessibility without harsh rings */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 1.5px solid rgb(var(--luxury-accent));
+  outline-offset: 2px;
+}
+
+/* Dark mode overrides for hardcoded color helpers */
+html.dark .bg-white {
+  background-color: rgb(var(--luxury-card)) !important;
+  color: rgb(var(--luxury-text)) !important;
+}
+
+html.dark .bg-\[\#FAF9F6\],
+html.dark .bg-\[\#F6F4F0\],
+html.dark .bg-\[\#FAF8F5\],
+html.dark .bg-\[\#FBF8F2\] {
+  background-color: rgb(var(--luxury-card)) !important;
+}
+
+html.dark .bg-\[\#F6F3EC\] {
+  background-color: rgb(var(--luxury-frame)) !important;
+}
+
+html.dark .text-\[\#2C2925\],
+html.dark .text-\[\#1C1B1A\],
+html.dark .text-\[\#4A4237\] {
+  color: rgb(var(--luxury-text)) !important;
+}
+
+html.dark .text-\[\#6F6456\] {
+  color: rgb(var(--luxury-muted)) !important;
+}
+
+html.dark input, html.dark textarea, html.dark select {
+  background-color: rgb(var(--luxury-card)) !important;
+  color: rgb(var(--luxury-text)) !important;
+  border-color: rgb(var(--luxury-border)) !important;
+}
+
+html.dark input:focus, html.dark textarea:focus, html.dark select:focus {
+  background-color: #1E1C1A !important;
+  border-color: rgb(var(--luxury-accent)) !important;
+}
+
+html.dark input::placeholder, html.dark textarea::placeholder {
+  color: rgb(var(--luxury-subtle)) !important;
+}

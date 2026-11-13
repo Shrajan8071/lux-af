@@ -1,0 +1,134 @@
+================================================================================
+LUXURY EDITORIAL PRODUCT DISCOVERY WEBSITE - CONFIGURATION & SETUP GUIDE
+================================================================================
+
+This document contains everything needed to connect and configure your live site.
+You do NOT need to fill this out immediately. The entire framework and codebase
+is being built so you can provide these values whenever you are ready.
+
+Table of Contents:
+  1. Environment Variables (.env.local)
+  2. Supabase Setup Instructions (Database, Auth, Storage)
+  3. Gemini AI Setup (Google AI Studio)
+  4. Google AdSense (Optional)
+  5. Local Run & Production Deployment (Vercel)
+
+================================================================================
+1. ENVIRONMENT VARIABLES (.env.local)
+================================================================================
+
+Create a file named `.env.local` in the project root directory and paste the
+following values. Replace the placeholders with your actual credentials:
+
+# -----------------------------------------------------------------------------
+# SUPABASE CONFIGURATION
+# -----------------------------------------------------------------------------
+# Obtain from: Supabase Dashboard -> Project Settings -> API
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key-here
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key-here
+
+# -----------------------------------------------------------------------------
+# GEMINI AI CONFIGURATION
+# -----------------------------------------------------------------------------
+# Obtain from: Google AI Studio (https://aistudio.google.com/) -> Get API Key
+GEMINI_API_KEY=your-gemini-api-key-here
+GEMINI_MODEL=gemini-2.5-flash
+
+# -----------------------------------------------------------------------------
+# APPLICATION CONFIGURATION
+# -----------------------------------------------------------------------------
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+# (When deployed on Vercel, change to your production domain, e.g., https://yourdomain.com)
+
+# -----------------------------------------------------------------------------
+# GOOGLE ADSENSE (OPTIONAL - LEAVE EMPTY IF NOT READY)
+# -----------------------------------------------------------------------------
+NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-XXXXXXXXXXXXXXXX
+NEXT_PUBLIC_ADSENSE_SLOT_ID=XXXXXXXXXX
+
+
+================================================================================
+2. SUPABASE SETUP INSTRUCTIONS
+================================================================================
+
+Follow these 4 simple steps in your Supabase Dashboard:
+
+--- Step 2.1: Create your Supabase Project ---
+1. Visit https://supabase.com and create a new project.
+2. Choose a database password and select your preferred region.
+
+--- Step 2.2: Execute Database Schema ---
+1. In the Supabase dashboard, navigate to the "SQL Editor" (terminal icon in left sidebar).
+2. Click "New Query".
+3. Open the file `supabase/schema.sql` from this repository.
+4. Copy its entire content and paste it into the Supabase SQL editor.
+5. Click "Run" (or Ctrl + Enter).
+   * This creates:
+     - `products` table (with sequential `article_number` starting at 1001)
+     - `site_settings` table (stores brand name, contact, About copy, disclosure)
+     - `product_events` table (for privacy-preserving site & click analytics)
+     - Row Level Security (RLS) policies protecting drafts & admin endpoints
+     - Database triggers for automatic timestamp updates
+
+--- Step 2.3: Storage Bucket Setup ---
+1. Navigate to "Storage" in the left sidebar of your Supabase dashboard.
+2. Click "New Bucket".
+3. Name the bucket: `product-images`
+4. Toggle "Public Bucket" to ON (this allows high-speed public CDN delivery of images).
+5. Click "Save".
+   * Note: The RLS policies inside `supabase/schema.sql` automatically permit
+     public image viewing and restrict image upload/delete to authenticated admins.
+
+--- Step 2.4: Create Your Admin Account ---
+1. Navigate to "Authentication" -> "Users" in your Supabase dashboard.
+2. Click "Add User" -> "Create User".
+3. Enter your desired Admin Email and Password.
+4. Toggle "Auto Confirm User" to ON so you don't need email verification.
+5. You can now use these credentials to sign in at `/admin/login`.
+
+
+================================================================================
+3. GEMINI AI SETUP
+================================================================================
+
+1. Go to Google AI Studio: https://aistudio.google.com/
+2. Sign in with your Google account.
+3. Click "Get API Key" -> "Create API key in new project".
+4. Copy the API key and paste it as `GEMINI_API_KEY` in your `.env.local`.
+
+
+================================================================================
+4. GOOGLE ADSENSE (OPTIONAL)
+================================================================================
+
+1. If you have an approved Google AdSense account:
+   - Copy your Publisher ID (format: `ca-pub-XXXXXXXXXXXXXXXX`)
+   - Create a display ad unit and copy the ad slot ID (numeric string)
+   - You can enter these either in `.env.local` or directly within the Admin Settings
+     page (`/admin/settings`).
+2. If you do not have AdSense yet, leave them blank. The site will cleanly hide
+   all ad containers with zero blank space or placeholders until you are ready.
+
+
+================================================================================
+5. LOCAL RUN & PRODUCTION DEPLOYMENT
+================================================================================
+
+To run locally:
+  npm install
+  npm run dev
+  Open http://localhost:3000
+
+To deploy to Vercel:
+  1. Push this project to a GitHub repository.
+  2. Import the repository in https://vercel.com.
+  3. Under "Environment Variables", add:
+     - NEXT_PUBLIC_SUPABASE_URL
+     - NEXT_PUBLIC_SUPABASE_ANON_KEY
+     - SUPABASE_SERVICE_ROLE_KEY
+     - GEMINI_API_KEY
+     - GEMINI_MODEL (default: gemini-2.5-flash)
+     - NEXT_PUBLIC_SITE_URL (your production domain)
+  4. Click "Deploy".
+================================================================================
