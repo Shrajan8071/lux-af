@@ -30,6 +30,9 @@ export default function EditBlogPage({ params }) {
   const [externalLinkLabel, setExternalLinkLabel] = useState('Reference Resource')
 
   // AI & Workflow
+  const [sourceDump, setSourceDump] = useState('')
+  const [focusTopic, setFocusTopic] = useState('Everyday utility: How this gadget helps normal people in day-to-day life and practical routines')
+  const [isGeneratingAI, setIsGeneratingAI] = useState(false)
   const [isRephrasingAI, setIsRephrasingAI] = useState(false)
   const [aiSuccessMsg, setAiSuccessMsg] = useState(null)
   const [previousDraft, setPreviousDraft] = useState(null)
@@ -101,6 +104,65 @@ export default function EditBlogPage({ params }) {
       setError('Error uploading image file.')
     } finally {
       setIsUploadingImage(false)
+    }
+  }
+
+  // Full Blog Generation from Amazon / Gadget Source Dump
+  const handleGenerateFromDump = async () => {
+    if (!sourceDump.trim()) {
+      setError('Please paste product or gadget text into the dump field first.')
+      return
+    }
+
+    if (title.trim() || content.trim()) {
+      const confirmOverwrite = window.confirm(
+        'Generating a new blog with Gemini AI will replace your current title, excerpt, and content. Proceed?'
+      )
+      if (!confirmOverwrite) return
+    }
+
+    setPreviousDraft({ title, excerpt, content })
+    setError(null)
+    setIsGeneratingAI(true)
+    setAiSuccessMsg(null)
+
+    try {
+      const res = await fetch('/api/admin/blogs/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sourceDump: sourceDump.trim(),
+          focusTopic: focusTopic.trim()
+        })
+      })
+
+      const data = await res.json()
+      if (data.success && data.data) {
+        const generatedTitle = data.data.title || ''
+        setTitle(generatedTitle)
+        setExcerpt(data.data.excerpt || '')
+        setContent(data.data.content || '')
+
+        setAiSuccessMsg(
+          data.simulated
+            ? '✦ Blog generated from gadget dump using editorial template (Local mode). Review and tweak below.'
+            : '✦ Complete editorial blog post crafted by Gemini AI focused on everyday utility! Review, customize, or save changes below.'
+        )
+
+        // Smooth scroll to the form
+        setTimeout(() => {
+          const formEl = document.getElementById('blog-editor-form')
+          if (formEl) {
+            formEl.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        }, 150)
+      } else {
+        setError(data.error || 'Failed to generate blog with Gemini AI.')
+      }
+    } catch (err) {
+      setError('Network error during Gemini AI blog generation.')
+    } finally {
+      setIsGeneratingAI(false)
     }
   }
 
@@ -279,7 +341,106 @@ export default function EditBlogPage({ params }) {
           </div>
         )}
 
-        <form onSubmit={handleOpenConfirm} className="space-y-8">
+        {/* Gemini AI Auto-Generation Suite (From Amazon / Gadget Source Dump) */}
+        <section className="bg-gradient-to-b from-[#FAF8F5] to-white dark:from-luxury-card dark:to-luxury-card border-2 border-luxury-accent/50 p-5 sm:p-8 space-y-5 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-luxury-border/60 pb-3">
+            <div className="flex items-center gap-2">
+              <span className="text-xs uppercase tracking-widest font-mono text-luxury-accent font-semibold flex items-center gap-1.5">
+                <span>✦</span>
+                <span>Fast Creation with Gemini AI</span>
+              </span>
+              <span className="text-[10px] px-2 py-0.5 bg-luxury-accent/10 border border-luxury-accent/30 text-luxury-accent font-mono uppercase tracking-widest">
+                Source Dump Mode
+              </span>
+            </div>
+            <span className="text-[11px] text-luxury-muted font-mono">
+              Paste text &rarr; Gemini creates complete essay
+            </span>
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-xs font-mono uppercase tracking-wider text-luxury-text">
+              Paste Raw Product / Gadget Dump
+            </label>
+            <p className="text-xs text-luxury-muted leading-relaxed">
+              Paste specs, feature bullets, or an Amazon product description. Gemini AI will analyze the hardware and compose a complete blog post focused on how this product genuinely helps normal people in day-to-day life.
+            </p>
+            <textarea
+              rows={4}
+              placeholder="Paste Amazon gadget description, product specs, or rough notes here..."
+              value={sourceDump}
+              onChange={(e) => setSourceDump(e.target.value)}
+              className="w-full px-3.5 py-3 border border-luxury-border bg-white dark:bg-luxury-frame text-luxury-text text-xs leading-relaxed focus:border-luxury-accent font-mono"
+            />
+          </div>
+
+          {/* Optional Focus / Custom Directive */}
+          <div className="space-y-1.5">
+            <label className="block text-[11px] font-mono uppercase tracking-wider text-luxury-subtle">
+              Editorial Focus / Audience Angle (Optional)
+            </label>
+            <input
+              type="text"
+              value={focusTopic}
+              onChange={(e) => setFocusTopic(e.target.value)}
+              placeholder="e.g. Everyday utility: How this gadget helps normal people in day-to-day life and practical routines"
+              className="w-full px-3 py-2 border border-luxury-border/70 bg-[#FAF9F6] dark:bg-luxury-frame text-luxury-text text-xs font-mono focus:border-luxury-accent"
+            />
+          </div>
+
+          {/* Action Row */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
+            <button
+              type="button"
+              onClick={handleGenerateFromDump}
+              disabled={isGeneratingAI || !sourceDump.trim()}
+              className="px-6 py-3 bg-luxury-black text-white hover:bg-luxury-accent disabled:opacity-50 text-xs uppercase tracking-widest font-mono flex items-center justify-center gap-2 transition-all shadow-sm group"
+            >
+              {isGeneratingAI ? (
+                <>
+                  <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>Gemini AI Generating Full Post...</span>
+                </>
+              ) : (
+                <>
+                  <span className="group-hover:rotate-12 transition-transform">✦</span>
+                  <span>Generate Full Blog with Gemini AI</span>
+                </>
+              )}
+            </button>
+
+            {sourceDump && (
+              <button
+                type="button"
+                onClick={() => setSourceDump('')}
+                className="text-xs text-luxury-muted hover:text-luxury-text font-mono underline underline-offset-4 self-end sm:self-center"
+              >
+                Clear Dump Text
+              </button>
+            )}
+          </div>
+        </section>
+
+        {/* AI Success Feedback & Undo Banner */}
+        {aiSuccessMsg && (
+          <div className="p-4 bg-[#FAF6EE] dark:bg-luxury-card border border-[#E3D9C4] dark:border-luxury-accent/50 text-xs font-mono text-luxury-text flex items-center justify-between shadow-sm">
+            <div className="flex items-center gap-2">
+              <span className="text-luxury-accent font-bold">✦</span>
+              <span>{aiSuccessMsg}</span>
+            </div>
+            {previousDraft && (
+              <button
+                type="button"
+                onClick={handleRevertDraft}
+                className="underline underline-offset-2 hover:text-luxury-accent font-mono text-[11px] shrink-0 ml-4"
+              >
+                Undo &amp; Revert
+              </button>
+            )}
+          </div>
+        )}
+
+        <form id="blog-editor-form" onSubmit={handleOpenConfirm} className="space-y-8">
           
           {/* Section 1: Title & Slug */}
           <section className="bg-white dark:bg-luxury-card border border-luxury-border p-5 sm:p-8 space-y-6">
