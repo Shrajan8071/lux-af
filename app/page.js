@@ -6,6 +6,8 @@ import PageViewTracker from '@/components/analytics/PageViewTracker'
 import { getPublishedProducts, getSiteSettings } from '@/lib/supabase/data'
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
+export const fetchCache = 'force-no-store'
 
 export default async function CataloguePage() {
   const [products, settings] = await Promise.all([

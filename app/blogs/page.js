@@ -4,6 +4,8 @@ import Footer from '@/components/layout/Footer'
 import { getPublishedBlogs, getSiteSettings } from '@/lib/supabase/data'
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
+export const fetchCache = 'force-no-store'
 
 export async function generateMetadata() {
   const settings = await getSiteSettings()
