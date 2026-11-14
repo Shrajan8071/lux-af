@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { useState, useEffect } from 'react'
+import { Menu, X } from 'lucide-react'
 import ThemeToggle from '@/components/layout/ThemeToggle'
 
 export default function AdminNav({ initialBrandName = '' }) {
@@ -103,22 +104,20 @@ export default function AdminNav({ initialBrandName = '' }) {
           </nav>
 
           {/* Mobile Hamburger Toggle Button */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex md:hidden items-center gap-2 shrink-0">
             <ThemeToggle />
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-luxury-muted hover:text-luxury-text focus:outline-none focus:ring-1 focus:ring-luxury-accent"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-luxury-border/60 hover:border-luxury-accent bg-luxury-card/50 text-luxury-text focus:outline-none focus:ring-1 focus:ring-luxury-accent transition-colors"
               aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
               aria-expanded={mobileMenuOpen}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
+              {mobileMenuOpen ? (
+                <X className="w-4 h-4 text-luxury-text animate-in fade-in zoom-in-75 duration-150" />
+              ) : (
+                <Menu className="w-4 h-4 text-luxury-text animate-in fade-in zoom-in-75 duration-150" />
+              )}
             </button>
           </div>
         </div>
