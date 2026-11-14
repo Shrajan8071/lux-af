@@ -44,7 +44,7 @@ export default function ProductPreviewModal({ isOpen, onClose, productData, curr
                 onClick={() => setActiveTab('card')}
                 className={`px-3 py-1 text-xs font-mono transition-colors ${
                   activeTab === 'card'
-                    ? 'bg-luxury-black text-white'
+                    ? 'bg-luxury-black text-white dark:bg-luxury-frame dark:border dark:border-luxury-accent/60 dark:text-luxury-text'
                     : 'bg-luxury-card text-luxury-muted hover:text-luxury-text'
                 }`}
               >
@@ -55,7 +55,7 @@ export default function ProductPreviewModal({ isOpen, onClose, productData, curr
                 onClick={() => setActiveTab('article')}
                 className={`px-3 py-1 text-xs font-mono transition-colors ${
                   activeTab === 'article'
-                    ? 'bg-luxury-black text-white'
+                    ? 'bg-luxury-black text-white dark:bg-luxury-frame dark:border dark:border-luxury-accent/60 dark:text-luxury-text'
                     : 'bg-luxury-card text-luxury-muted hover:text-luxury-text'
                 }`}
               >

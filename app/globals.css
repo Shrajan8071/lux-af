@@ -36,7 +36,7 @@ html.dark {
   --luxury-accent: 202 188 164;       /* #CABCA4: Warm champagne taupe */
   --luxury-accent-hover: 225 214 195; /* #E1D6C3 */
   --luxury-highlight: 30 28 26;       /* #1E1C1A */
-  --luxury-black: 246 244 240;        /* #F6F4F0: Inverted for high-contrast action buttons */
+  --luxury-black: 28 26 24;           /* #1C1A18: Elevated dark luxury action surface */
 }
 
 *, *::before, *::after {
@@ -145,4 +145,86 @@ html.dark input:focus, html.dark textarea:focus, html.dark select:focus {
 
 html.dark input::placeholder, html.dark textarea::placeholder {
   color: rgb(var(--luxury-subtle)) !important;
+}
+
+/* Dark mode luxury action buttons (prevents blinding all-white buttons) */
+html.dark .bg-luxury-black {
+  background-color: #22201E !important;
+  color: #F6F4F0 !important;
+  border: 1px solid rgba(202, 188, 164, 0.35) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+html.dark .bg-luxury-black:hover,
+html.dark button.bg-luxury-black:hover,
+html.dark a.bg-luxury-black:hover {
+  background-color: rgb(var(--luxury-accent)) !important;
+  color: #0F0E0D !important;
+  border-color: rgb(var(--luxury-accent)) !important;
+}
+
+html.dark input[type="file"]::file-selector-button {
+  background-color: #22201E !important;
+  color: #F6F4F0 !important;
+  border: 1px solid rgba(202, 188, 164, 0.35) !important;
+}
+
+html.dark input[type="file"]:hover::file-selector-button {
+  background-color: rgb(var(--luxury-accent)) !important;
+  color: #0F0E0D !important;
+}
+
+/* Dark mode notification & toast banners */
+html.dark .bg-\[\#FAF6EE\] {
+  background-color: #201E1A !important;
+  border-color: rgba(202, 188, 164, 0.35) !important;
+  color: #F6F4F0 !important;
+}
+
+html.dark .bg-emerald-50 {
+  background-color: rgba(6, 78, 59, 0.35) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  color: #A7F3D0 !important;
+}
+
+html.dark .text-emerald-950,
+html.dark .text-emerald-900,
+html.dark .text-emerald-800 {
+  color: #A7F3D0 !important;
+}
+
+html.dark .bg-red-50 {
+  background-color: rgba(127, 29, 29, 0.35) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  color: #FECACA !important;
+}
+
+html.dark .text-red-900,
+html.dark .text-red-800 {
+  color: #FECACA !important;
+}
+
+html.dark .bg-amber-50 {
+  background-color: rgba(120, 53, 15, 0.35) !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+  color: #FDE68A !important;
+}
+
+html.dark .text-amber-900,
+html.dark .text-amber-800 {
+  color: #FDE68A !important;
+}
+
+html.dark .bg-\[\#F3EFE8\],
+html.dark .bg-\[\#F4F0E8\] {
+  background-color: rgb(var(--luxury-frame)) !important;
+}
+
+html.dark .hover\:bg-\[\#F6F3EC\]:hover,
+html.dark .hover\:bg-\[\#F6F4F0\]:hover {
+  background-color: rgb(var(--luxury-highlight)) !important;
+}
+
+html.dark .hover\:bg-\[\#FAF9F6\]\/80:hover {
+  background-color: rgba(30, 28, 26, 0.8) !important;
 }

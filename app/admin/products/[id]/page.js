@@ -281,12 +281,12 @@ export default function EditProductPage({ params }) {
 
       {/* Notifications */}
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 text-xs text-red-900 font-mono">
-          {error}
+        <div className="p-4 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 text-xs text-red-900 dark:text-red-300 font-mono">
+          ⚠ {error}
         </div>
       )}
       {successMsg && (
-        <div className="p-4 bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 font-mono">
+        <div className="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-xs text-emerald-900 dark:text-emerald-300 font-mono">
           ✓ {successMsg}
         </div>
       )}
@@ -524,7 +524,7 @@ export default function EditProductPage({ params }) {
       {/* Confirmation Modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white border border-luxury-border max-w-md w-full p-6 sm:p-8 space-y-5 shadow-2xl">
+          <div className="bg-white dark:bg-luxury-card border border-luxury-border max-w-md w-full p-6 sm:p-8 space-y-5 shadow-2xl">
             <div className="border-b border-luxury-border/60 pb-3">
               <span className="text-[10px] uppercase tracking-widest font-mono text-luxury-accent block mb-1">
                 Confirmation Required
@@ -538,7 +538,7 @@ export default function EditProductPage({ params }) {
               <p>
                 Are you sure you want to save changes to Object No. {product.article_number}?
               </p>
-              <div className="p-3 bg-[#FAF9F6] border border-luxury-border/60 font-mono text-[11px] space-y-1.5">
+              <div className="p-3 bg-[#FAF9F6] dark:bg-luxury-highlight border border-luxury-border/60 font-mono text-[11px] space-y-1.5">
                 <div className="truncate"><strong>Title:</strong> {title || 'Untitled'}</div>
                 <div><strong>Status:</strong> {status === 'published' ? '● Published (Public)' : '○ Draft (Private)'}</div>
                 <div><strong>Price:</strong> {currency} {price}</div>
@@ -555,7 +555,7 @@ export default function EditProductPage({ params }) {
                 type="button"
                 onClick={() => setShowConfirmModal(false)}
                 disabled={saving}
-                className="px-4 py-2.5 border border-luxury-border text-luxury-muted hover:text-luxury-text"
+                className="px-4 py-2.5 border border-luxury-border text-luxury-muted hover:text-luxury-text hover:bg-luxury-highlight transition-colors"
               >
                 Cancel
               </button>
@@ -563,7 +563,7 @@ export default function EditProductPage({ params }) {
                 type="button"
                 onClick={handleConfirmSave}
                 disabled={saving}
-                className="px-6 py-2.5 bg-luxury-black text-white hover:bg-luxury-accent uppercase tracking-wider transition-colors"
+                className="px-6 py-2.5 bg-luxury-black text-white hover:bg-luxury-accent uppercase tracking-wider transition-colors shadow-sm"
               >
                 {saving ? 'Saving...' : 'Confirm & Save'}
               </button>

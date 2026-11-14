@@ -8,16 +8,16 @@ export default function ContainImage({ src, alt, priority = false, className = '
 
   // Neutral luxury placeholder if no image or error
   const placeholder = (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-[#F3EFE8] text-luxury-muted p-6 text-center">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-[#F3EFE8] dark:bg-luxury-frame text-luxury-muted p-6 text-center">
       <span className="font-editorial-serif italic text-lg tracking-wide text-luxury-accent">Editorial Archive</span>
       <span className="text-[11px] tracking-widest uppercase mt-2 text-luxury-subtle">Object Documentation</span>
     </div>
   )
 
   return (
-    <div className={`relative w-full h-full flex items-center justify-center overflow-hidden bg-[#F6F3EC] ${className}`}>
+    <div className={`relative w-full h-full flex items-center justify-center overflow-hidden bg-[#F6F3EC] dark:bg-luxury-frame ${className}`}>
       {!isLoaded && !hasError && (
-        <div className="absolute inset-0 bg-[#F4F0E8] animate-pulse" />
+        <div className="absolute inset-0 bg-[#F4F0E8] dark:bg-luxury-highlight animate-pulse" />
       )}
       
       {hasError || !src ? (

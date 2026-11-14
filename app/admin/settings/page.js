@@ -207,21 +207,21 @@ export default function AdminSettingsPage() {
 
       {/* Notifications */}
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 text-xs text-red-900 font-mono flex items-center justify-between">
-          <span>{error}</span>
-          <button onClick={() => setError(null)} className="text-red-700 hover:text-red-900">✕</button>
+        <div className="p-4 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 text-xs text-red-900 dark:text-red-300 font-mono flex items-center justify-between">
+          <span>⚠ {error}</span>
+          <button onClick={() => setError(null)} className="text-red-700 dark:text-red-400 hover:text-red-900">✕</button>
         </div>
       )}
       {successMsg && (
-        <div className="p-4 bg-emerald-50 border border-emerald-300 text-xs text-emerald-950 font-mono flex items-center justify-between">
+        <div className="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800/60 text-xs text-emerald-950 dark:text-emerald-300 font-mono flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-emerald-700 font-bold">✓</span>
+            <span className="text-emerald-700 dark:text-emerald-400 font-bold">✓</span>
             <span>{successMsg}</span>
           </div>
           <Link
             href="/about"
             target="_blank"
-            className="underline underline-offset-4 text-emerald-800 hover:text-emerald-950 font-medium ml-4"
+            className="underline underline-offset-4 text-emerald-800 dark:text-emerald-300 hover:text-emerald-950 dark:hover:text-emerald-100 font-medium ml-4"
           >
             Open About Page ↗
           </Link>
@@ -635,7 +635,7 @@ export default function AdminSettingsPage() {
       {/* Confirmation Modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white border border-luxury-border max-w-md w-full p-6 sm:p-8 space-y-5 shadow-2xl">
+          <div className="bg-white dark:bg-luxury-card border border-luxury-border max-w-md w-full p-6 sm:p-8 space-y-5 shadow-2xl">
             <div className="border-b border-luxury-border/60 pb-3">
               <span className="text-[10px] uppercase tracking-widest font-mono text-luxury-accent block mb-1">
                 Confirmation Required
@@ -649,7 +649,7 @@ export default function AdminSettingsPage() {
               <p>
                 Are you sure you want to save these changes to your brand settings, About page subtitle, and Curatorial Principles?
               </p>
-              <div className="p-3 bg-[#FAF9F6] border border-luxury-border/60 font-mono text-[11px] space-y-1">
+              <div className="p-3 bg-[#FAF9F6] dark:bg-luxury-highlight border border-luxury-border/60 font-mono text-[11px] space-y-1">
                 <div><strong>Brand Name:</strong> {brandName || 'Not set'}</div>
                 <div><strong>Nav Descriptor:</strong> {navSubtitle || 'Default'}</div>
                 <div><strong>Catalogue Heading:</strong> {homeHeading || 'The Product Index'}</div>
@@ -666,7 +666,7 @@ export default function AdminSettingsPage() {
                 type="button"
                 onClick={() => setShowConfirmModal(false)}
                 disabled={saving}
-                className="px-4 py-2.5 border border-luxury-border text-luxury-muted hover:text-luxury-text"
+                className="px-4 py-2.5 border border-luxury-border text-luxury-muted hover:text-luxury-text hover:bg-luxury-highlight transition-colors"
               >
                 Cancel
               </button>
@@ -674,7 +674,7 @@ export default function AdminSettingsPage() {
                 type="button"
                 onClick={handleConfirmSave}
                 disabled={saving}
-                className="px-6 py-2.5 bg-luxury-black text-white hover:bg-luxury-accent uppercase tracking-wider transition-colors"
+                className="px-6 py-2.5 bg-luxury-black text-white hover:bg-luxury-accent uppercase tracking-wider transition-colors shadow-sm"
               >
                 {saving ? 'Updating...' : 'Confirm & Save'}
               </button>

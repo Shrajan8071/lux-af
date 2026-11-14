@@ -45,15 +45,15 @@ export default async function AdminOverviewPage({ searchParams }) {
         </div>
 
         {/* Date Filter */}
-        <div className="flex items-center gap-1 border border-luxury-border bg-white p-1">
+        <div className="flex items-center gap-1 border border-luxury-border bg-white dark:bg-luxury-card p-1">
           {['7d', '30d', 'all'].map((r) => (
             <Link
               key={r}
               href={`/admin?range=${r}`}
               className={`px-3 py-1 text-xs font-mono uppercase tracking-wider transition-colors ${
                 range === r
-                  ? 'bg-luxury-black text-white'
-                  : 'text-luxury-muted hover:text-luxury-text hover:bg-[#F6F4F0]'
+                  ? 'bg-luxury-black text-white dark:bg-luxury-frame dark:border dark:border-luxury-accent/60 dark:text-luxury-text'
+                  : 'text-luxury-muted hover:text-luxury-text hover:bg-[#F6F4F0] dark:hover:bg-luxury-highlight'
               }`}
             >
               {r === '7d' ? '7 Days' : r === '30d' ? '30 Days' : 'All Time'}

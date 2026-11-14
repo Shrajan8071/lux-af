@@ -163,7 +163,7 @@ export default async function ArticlePage({ params }) {
                 href={`/api/out/${id}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center px-8 py-4 bg-luxury-black text-luxury-bg hover:bg-luxury-accent transition-colors duration-200 text-xs sm:text-sm uppercase tracking-widest font-mono text-center group"
+                className="w-full inline-flex items-center justify-center px-8 py-4 bg-luxury-black text-white hover:bg-luxury-accent transition-colors duration-200 text-xs sm:text-sm uppercase tracking-widest font-mono text-center group shadow-sm"
               >
                 <span>View at Retailer</span>
                 <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true">&rarr;</span>

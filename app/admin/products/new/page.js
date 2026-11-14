@@ -228,9 +228,9 @@ export default function NewProductPage() {
 
       {/* Global Error Banner */}
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 text-xs text-red-900 font-mono flex items-center justify-between">
-          <span>{error}</span>
-          <button onClick={() => setError(null)} className="text-red-700 hover:text-red-900 ml-4">✕</button>
+        <div className="p-4 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 text-xs text-red-900 dark:text-red-300 font-mono flex items-center justify-between">
+          <span>⚠ {error}</span>
+          <button onClick={() => setError(null)} className="text-red-700 dark:text-red-400 hover:text-red-900 ml-4">✕</button>
         </div>
       )}
 
@@ -396,8 +396,8 @@ export default function NewProductPage() {
             disabled={isGeneratingAI || !sourceContent.trim()}
             className={`w-full sm:w-auto px-4 py-2.5 text-xs uppercase tracking-widest font-mono transition-colors flex items-center justify-center gap-2 ${
               isGeneratingAI || !sourceContent.trim()
-                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                : 'bg-luxury-accent hover:bg-luxury-accentHover text-white shadow-sm'
+                ? 'bg-gray-200 dark:bg-luxury-frame text-gray-500 dark:text-luxury-subtle cursor-not-allowed'
+                : 'bg-luxury-accent hover:bg-luxury-accentHover text-luxury-bg dark:text-[#0F0E0D] font-medium shadow-sm'
             }`}
           >
             <span>{isGeneratingAI ? 'Crafting Draft...' : '✦ Generate AI Draft'}</span>
@@ -405,7 +405,7 @@ export default function NewProductPage() {
         </div>
 
         {aiGeneratedSuccess && (
-          <div className="p-3 bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 font-mono">
+          <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-xs text-emerald-800 dark:text-emerald-300 font-mono">
             ✓ Editorial draft generated successfully. Please review and refine the fields below.
           </div>
         )}
@@ -485,12 +485,20 @@ export default function NewProductPage() {
           </p>
         </div>
 
+        {/* Inline Error Notice for Bottom Actions */}
+        {error && (
+          <div className="p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 text-xs text-red-900 dark:text-red-300 font-mono flex items-center justify-between">
+            <span>⚠ {error}</span>
+            <button type="button" onClick={() => setError(null)} className="text-red-700 dark:text-red-400 hover:text-red-900 ml-3">✕</button>
+          </div>
+        )}
+
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-end gap-3 pt-2">
           {/* Step 8: Preview Button */}
           <button
             type="button"
             onClick={() => setPreviewOpen(true)}
-            className="w-full sm:w-auto px-5 py-3 border border-luxury-border bg-luxury-card hover:bg-[#F6F3EC] text-luxury-text text-xs uppercase tracking-wider font-mono transition-colors text-center"
+            className="w-full sm:w-auto px-5 py-3 border border-luxury-border bg-luxury-card hover:bg-[#F6F3EC] dark:hover:bg-luxury-highlight text-luxury-text text-xs uppercase tracking-wider font-mono transition-colors text-center"
           >
             Preview Object &rarr;
           </button>
@@ -500,7 +508,7 @@ export default function NewProductPage() {
             type="button"
             onClick={() => handleSave('draft')}
             disabled={savingStatus !== false}
-            className="w-full sm:w-auto px-5 py-3 border border-luxury-black text-luxury-black hover:bg-luxury-black hover:text-white text-xs uppercase tracking-widest font-mono transition-colors text-center"
+            className="w-full sm:w-auto px-5 py-3 border border-luxury-border hover:border-luxury-accent bg-luxury-card hover:bg-luxury-highlight text-luxury-text text-xs uppercase tracking-widest font-mono transition-colors text-center"
           >
             {savingStatus === 'draft' ? 'Saving...' : 'Save Draft'}
           </button>
@@ -510,7 +518,7 @@ export default function NewProductPage() {
             type="button"
             onClick={() => handleSave('published')}
             disabled={savingStatus !== false}
-            className="w-full sm:w-auto px-6 py-3 bg-luxury-black text-white hover:bg-luxury-accent text-xs uppercase tracking-widest font-mono transition-colors text-center"
+            className="w-full sm:w-auto px-6 py-3 bg-luxury-black text-white hover:bg-luxury-accent text-xs uppercase tracking-widest font-mono transition-colors text-center shadow-sm"
           >
             {savingStatus === 'published' ? 'Publishing...' : 'Publish to Journal'}
           </button>
@@ -539,7 +547,7 @@ export default function NewProductPage() {
       {/* Confirmation Modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white border border-luxury-border max-w-md w-full p-6 sm:p-8 space-y-5 shadow-2xl">
+          <div className="bg-white dark:bg-luxury-card border border-luxury-border max-w-md w-full p-6 sm:p-8 space-y-5 shadow-2xl">
             <div className="border-b border-luxury-border/60 pb-3">
               <span className="text-[10px] uppercase tracking-widest font-mono text-luxury-accent block mb-1">
                 Confirmation Required
@@ -553,7 +561,7 @@ export default function NewProductPage() {
               <p>
                 Are you sure you want to {pendingStatus === 'published' ? 'publish this object publicly' : 'save this object as a private draft'}?
               </p>
-              <div className="p-3 bg-[#FAF9F6] border border-luxury-border/60 font-mono text-[11px] space-y-1.5">
+              <div className="p-3 bg-[#FAF9F6] dark:bg-luxury-highlight border border-luxury-border/60 font-mono text-[11px] space-y-1.5">
                 <div className="truncate"><strong>Title:</strong> {title || 'Untitled'}</div>
                 <div><strong>Status:</strong> {pendingStatus === 'published' ? '● Published (Public)' : '○ Draft (Private)'}</div>
                 <div><strong>Price:</strong> {currency} {price}</div>
@@ -570,7 +578,7 @@ export default function NewProductPage() {
                 type="button"
                 onClick={() => setShowConfirmModal(false)}
                 disabled={savingStatus !== false}
-                className="px-4 py-2.5 border border-luxury-border text-luxury-muted hover:text-luxury-text"
+                className="px-4 py-2.5 border border-luxury-border text-luxury-muted hover:text-luxury-text hover:bg-luxury-highlight transition-colors"
               >
                 Cancel
               </button>
@@ -578,7 +586,7 @@ export default function NewProductPage() {
                 type="button"
                 onClick={handleConfirmSave}
                 disabled={savingStatus !== false}
-                className="px-6 py-2.5 bg-luxury-black text-white hover:bg-luxury-accent uppercase tracking-wider transition-colors"
+                className="px-6 py-2.5 bg-luxury-black text-white hover:bg-luxury-accent uppercase tracking-wider transition-colors shadow-sm"
               >
                 {savingStatus !== false ? 'Saving...' : 'Confirm & Save'}
               </button>

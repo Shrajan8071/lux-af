@@ -107,9 +107,12 @@ export default function AdminProductsPage() {
 
       {/* Action Notification */}
       {actionMessage && (
-        <div className="p-3 bg-[#FAF6EE] border border-[#E3D9C4] text-xs font-mono text-luxury-text flex items-center justify-between">
-          <span>{actionMessage}</span>
-          <button onClick={() => setActionMessage(null)} className="text-luxury-muted hover:text-luxury-text">✕</button>
+        <div className="p-3 bg-[#FAF6EE] dark:bg-luxury-card border border-[#E3D9C4] dark:border-luxury-accent/50 text-xs font-mono text-luxury-text flex items-center justify-between shadow-sm">
+          <span className="flex items-center gap-2">
+            <span className="text-luxury-accent font-bold">✦</span>
+            <span>{actionMessage}</span>
+          </span>
+          <button onClick={() => setActionMessage(null)} className="text-luxury-muted hover:text-luxury-text ml-4 font-mono">✕</button>
         </div>
       )}
 
@@ -154,8 +157,8 @@ export default function AdminProductsPage() {
                             onClick={() => handleToggleStatus(item)}
                             className={`px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider rounded-sm border ${
                               isPublished
-                                ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                                : 'bg-amber-50 text-amber-800 border-amber-200'
+                                ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60'
+                                : 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800/60'
                             }`}
                           >
                             {isPublished ? '● Published' : '○ Draft'}
@@ -253,8 +256,8 @@ export default function AdminProductsPage() {
                             onClick={() => handleToggleStatus(item)}
                             className={`inline-flex items-center px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider rounded-sm transition-colors border ${
                               isPublished
-                                ? 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100'
-                                : 'bg-amber-50 text-amber-800 border-amber-200 hover:bg-amber-100'
+                                ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100'
+                                : 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800/60 hover:bg-amber-100'
                             }`}
                             title="Click to toggle publish status"
                           >
@@ -296,29 +299,29 @@ export default function AdminProductsPage() {
 
       {/* Delete Confirmation Modal */}
       {deleteModalProduct && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
-          <div className="bg-white border border-luxury-border max-w-md w-full p-6 space-y-4 shadow-xl">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-luxury-card border border-luxury-border max-w-md w-full p-6 space-y-4 shadow-xl">
             <h3 className="font-editorial-serif text-xl text-luxury-text">
               Confirm Object Deletion
             </h3>
             <p className="text-xs text-luxury-muted leading-relaxed">
               Are you sure you want to delete <strong className="text-luxury-text">"{deleteModalProduct.title}"</strong> (Article No. {deleteModalProduct.article_number})?
             </p>
-            <div className="bg-[#FAF8F5] p-3 text-[11px] font-mono text-luxury-subtle border border-luxury-border/60">
+            <div className="bg-[#FAF8F5] dark:bg-luxury-highlight p-3 text-[11px] font-mono text-luxury-subtle border border-luxury-border/60">
               Note: The article number will NOT be recycled to preserve canonical integrity. Historical on-site click events will be retained in aggregate.
             </div>
             <div className="flex items-center justify-end gap-3 pt-3">
               <button
                 type="button"
                 onClick={() => setDeleteModalProduct(null)}
-                className="px-4 py-2 border border-luxury-border text-xs font-mono text-luxury-muted hover:text-luxury-text"
+                className="px-4 py-2 border border-luxury-border text-xs font-mono text-luxury-muted hover:text-luxury-text hover:bg-luxury-highlight transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={handleDelete}
-                className="px-4 py-2 bg-red-700 text-white text-xs font-mono uppercase tracking-wider hover:bg-red-800"
+                className="px-4 py-2 bg-red-700 text-white text-xs font-mono uppercase tracking-wider hover:bg-red-800 transition-colors shadow-sm"
               >
                 Permanently Delete
               </button>
