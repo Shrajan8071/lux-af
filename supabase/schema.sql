@@ -213,3 +213,52 @@ CREATE POLICY "Admin Delete Product Images"
     FOR DELETE
     TO authenticated
     USING (bucket_id = 'product-images');
+
+-- -----------------------------------------------------------------------------
+-- 8. BLOGS & EDITORIAL DISPATCHES TABLE
+-- -----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS public.blogs (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    slug TEXT UNIQUE NOT NULL,
+    title TEXT NOT NULL,
+    excerpt TEXT,
+    content TEXT NOT NULL,
+    image_path TEXT, -- Optional photo URL or Supabase storage path
+    video_url TEXT, -- Optional YouTube video or Instagram reel URL
+    external_link TEXT, -- Optional outbound reference URL
+    external_link_label TEXT DEFAULT 'Reference Resource',
+    status TEXT NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'published')),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now()),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now()),
+    published_at TIMESTAMPTZ
+);
+
+CREATE INDEX IF NOT EXISTS idx_blogs_published 
+ON public.blogs (status, published_at DESC NULLS LAST, created_at DESC, id DESC);
+
+CREATE INDEX IF NOT EXISTS idx_blogs_slug 
+ON public.blogs (slug);
+
+DROP TRIGGER IF EXISTS set_blogs_updated_at ON public.blogs;
+CREATE TRIGGER set_blogs_updated_at
+    BEFORE UPDATE ON public.blogs
+    FOR EACH ROW
+    EXECUTE FUNCTION public.handle_updated_at();
+
+ALTER TABLE public.blogs ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can view published blogs" ON public.blogs;
+CREATE POLICY "Public can view published blogs"
+    ON public.blogs
+    FOR SELECT
+    TO anon, authenticated
+    USING (status = 'published');
+
+DROP POLICY IF EXISTS "Admins have full access to blogs" ON public.blogs;
+CREATE POLICY "Admins have full access to blogs"
+    ON public.blogs
+    FOR ALL
+    TO authenticated
+    USING (true)
+    WITH CHECK (true);
+

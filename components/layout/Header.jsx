@@ -59,6 +59,16 @@ export default function Header({ settings = {} }) {
               Catalogue
             </Link>
             <Link
+              href="/blogs"
+              className={`transition-colors pb-0.5 border-b ${
+                pathname.startsWith('/blogs')
+                  ? 'text-luxury-text border-luxury-text font-medium'
+                  : 'border-transparent hover:text-luxury-text hover:border-luxury-text'
+              }`}
+            >
+              Journal
+            </Link>
+            <Link
               href="/about"
               className={`transition-colors pb-0.5 border-b ${
                 pathname === '/about'
@@ -130,6 +140,19 @@ export default function Header({ settings = {} }) {
               }`}
             >
               <span>Catalogue</span>
+              <span className="text-[10px] text-luxury-subtle">&rarr;</span>
+            </Link>
+
+            <Link
+              href="/blogs"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center justify-between py-3 px-3.5 text-xs uppercase tracking-widest border-l-2 transition-colors ${
+                pathname.startsWith('/blogs')
+                  ? 'border-luxury-accent text-luxury-text bg-luxury-highlight font-medium'
+                  : 'border-transparent text-luxury-muted hover:text-luxury-text hover:bg-luxury-highlight/60'
+              }`}
+            >
+              <span>The Journal (Blogs)</span>
               <span className="text-[10px] text-luxury-subtle">&rarr;</span>
             </Link>
 

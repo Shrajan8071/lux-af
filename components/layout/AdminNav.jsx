@@ -44,7 +44,7 @@ export default function AdminNav({ initialBrandName = '' }) {
   const navLinks = [
     { label: 'Overview', href: '/admin' },
     { label: 'Products', href: '/admin/products' },
-    { label: 'Add Product', href: '/admin/products/new' },
+    { label: 'Blogs', href: '/admin/blogs' },
     { label: 'Site Settings', href: '/admin/settings' },
   ]
 

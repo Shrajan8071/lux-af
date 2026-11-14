@@ -50,6 +50,11 @@ export default function Footer({ settings = {} }) {
                 </Link>
               </li>
               <li>
+                <Link href="/blogs" className="hover:text-luxury-text transition-colors">
+                  The Journal (Blogs)
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className="hover:text-luxury-text transition-colors">
                   About the Journal
                 </Link>
