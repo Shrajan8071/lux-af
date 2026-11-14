@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import AdminNav from '@/components/layout/AdminNav'
 
 export default function AdminBlogsPage() {
   const searchParams = useSearchParams()
@@ -82,12 +81,8 @@ export default function AdminBlogsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-luxury-bg text-luxury-text flex flex-col font-sans transition-colors duration-150">
-      <AdminNav />
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 flex-1 w-full space-y-8">
-        
-        {/* Header & New Blog CTA */}
+    <div className="space-y-8">
+      {/* Header & New Blog CTA */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-luxury-border/60">
           <div>
             <span className="text-[10px] uppercase tracking-widest font-mono text-luxury-accent block mb-1">
@@ -309,7 +304,6 @@ export default function AdminBlogsPage() {
             </>
           )}
         </div>
-      </main>
 
       {/* Delete Confirmation Modal */}
       {deleteModalBlog && (

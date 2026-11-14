@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import AdminNav from '@/components/layout/AdminNav'
 import BlogPreviewModal from '@/components/admin/BlogPreviewModal'
 
 export default function EditBlogPage({ params }) {
@@ -218,22 +217,16 @@ export default function EditBlogPage({ params }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-luxury-bg text-luxury-text flex flex-col font-sans">
-        <AdminNav />
-        <main className="max-w-4xl mx-auto px-4 py-20 text-center font-mono text-xs text-luxury-muted">
-          Loading editorial dispatch...
-        </main>
+      <div className="max-w-4xl mx-auto px-4 py-20 text-center font-mono text-xs text-luxury-muted">
+        Loading editorial dispatch...
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-luxury-bg text-luxury-text flex flex-col font-sans transition-colors duration-150">
-      <AdminNav />
-
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 flex-1 w-full space-y-8">
-        
-        {/* Breadcrumb Navigation */}
+    <div className="max-w-4xl mx-auto space-y-8 pb-16">
+      
+      {/* Breadcrumb Navigation */}
         <div className="flex items-center justify-between text-xs font-mono text-luxury-subtle">
           <div className="flex items-center gap-2">
             <Link href="/admin/blogs" className="hover:text-luxury-text transition-colors">
@@ -536,8 +529,6 @@ export default function EditBlogPage({ params }) {
           </section>
 
         </form>
-
-      </main>
 
       {/* Live Preview Modal */}
       <BlogPreviewModal

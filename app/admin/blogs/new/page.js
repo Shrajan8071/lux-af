@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import AdminNav from '@/components/layout/AdminNav'
 import BlogPreviewModal from '@/components/admin/BlogPreviewModal'
 
 function slugify(text) {
@@ -220,12 +219,9 @@ export default function NewBlogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-luxury-bg text-luxury-text flex flex-col font-sans transition-colors duration-150">
-      <AdminNav />
-
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 flex-1 w-full space-y-8">
-        
-        {/* Breadcrumb Navigation */}
+    <div className="max-w-4xl mx-auto space-y-8 pb-16">
+      
+      {/* Breadcrumb Navigation */}
         <div className="flex items-center gap-2 text-xs font-mono text-luxury-subtle">
           <Link href="/admin/blogs" className="hover:text-luxury-text transition-colors">
             &larr; Back to Blogs
@@ -557,8 +553,6 @@ export default function NewBlogPage() {
           </section>
 
         </form>
-
-      </main>
 
       {/* Live Preview Modal */}
       <BlogPreviewModal

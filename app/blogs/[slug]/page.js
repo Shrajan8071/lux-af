@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ProductVideoBlock from '@/components/article/ProductVideoBlock'
+import BlogContentRenderer from '@/components/blog/BlogContentRenderer'
 import { getBlogBySlug, getSiteSettings, getPublishedBlogs } from '@/lib/supabase/data'
 
 export const dynamic = 'force-dynamic'
@@ -114,12 +115,8 @@ export default async function BlogDetailPage({ params }) {
         )}
 
         {/* Essay Body */}
-        <article className="prose prose-stone dark:prose-invert max-w-none text-luxury-text leading-relaxed text-base sm:text-lg font-light space-y-6 pt-4">
-          {paragraphs.map((p, idx) => (
-            <p key={idx} className="font-light">
-              {p}
-            </p>
-          ))}
+        <article className="max-w-none text-luxury-text leading-relaxed text-base sm:text-lg font-light pt-4">
+          <BlogContentRenderer content={blog.content} />
         </article>
 
         {/* Optional Video Embed */}

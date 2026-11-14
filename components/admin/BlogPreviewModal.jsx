@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import ProductVideoBlock from '@/components/article/ProductVideoBlock'
+import BlogContentRenderer from '@/components/blog/BlogContentRenderer'
 
 export default function BlogPreviewModal({ isOpen, onClose, blogData = {} }) {
   const [deviceMode, setDeviceMode] = useState('desktop') // 'desktop' | 'mobile'
@@ -109,12 +110,8 @@ export default function BlogPreviewModal({ isOpen, onClose, blogData = {} }) {
             )}
 
             {/* Body Content */}
-            <div className="prose prose-stone dark:prose-invert text-luxury-text text-sm sm:text-base leading-relaxed space-y-5 pt-2">
-              {paragraphs.map((p, idx) => (
-                <p key={idx} className="font-light">
-                  {p}
-                </p>
-              ))}
+            <div className="text-luxury-text text-sm sm:text-base leading-relaxed pt-2">
+              <BlogContentRenderer content={content} />
             </div>
 
             {/* Optional Video Embed */}
