@@ -4,6 +4,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ProductVideoBlock from '@/components/article/ProductVideoBlock'
 import BlogContentRenderer from '@/components/blog/BlogContentRenderer'
+import PageViewTracker from '@/components/analytics/PageViewTracker'
 import { getBlogBySlug, getSiteSettings, getPublishedBlogs } from '@/lib/supabase/data'
 
 export const dynamic = 'force-dynamic'
@@ -66,6 +67,7 @@ export default async function BlogDetailPage({ params }) {
   return (
     <>
       <Header settings={settings} />
+      <PageViewTracker eventType="page_view" path={`/blogs/${blog.slug}`} />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 flex-1 w-full space-y-10 sm:space-y-12">
         

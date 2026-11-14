@@ -45,6 +45,7 @@ export default function AdminNav({ initialBrandName = '' }) {
     { label: 'Overview', href: '/admin' },
     { label: 'Products', href: '/admin/products' },
     { label: 'Blogs', href: '/admin/blogs' },
+    { label: 'Auto Queue', href: '/admin/blogs/queue' },
     { label: 'Site Settings', href: '/admin/settings' },
   ]
 

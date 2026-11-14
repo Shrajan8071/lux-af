@@ -328,6 +328,7 @@ export default function EditBlogPage({ params }) {
               className="px-3 py-1.5 text-xs font-mono border border-luxury-border bg-[#FAF9F6] dark:bg-luxury-highlight text-luxury-text"
             >
               <option value="draft">Draft (Private)</option>
+              <option value="queued">Queued (Automated Drip Release)</option>
               <option value="published">Published (Public)</option>
             </select>
           </div>

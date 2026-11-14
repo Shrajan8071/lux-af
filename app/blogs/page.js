@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import PageViewTracker from '@/components/analytics/PageViewTracker'
 import { getPublishedBlogs, getSiteSettings } from '@/lib/supabase/data'
 
 export const dynamic = 'force-dynamic'
@@ -31,6 +32,7 @@ export default async function BlogsPage() {
   return (
     <>
       <Header settings={settings} />
+      <PageViewTracker eventType="page_view" path="/blogs" />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex-1 w-full space-y-12 sm:space-y-16">
         

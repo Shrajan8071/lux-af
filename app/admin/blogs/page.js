@@ -96,12 +96,22 @@ export default function AdminBlogsPage() {
             </p>
           </div>
 
-          <Link
-            href="/admin/blogs/new"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 bg-luxury-black text-white hover:bg-luxury-accent transition-colors text-xs uppercase tracking-widest font-mono shrink-0 w-full sm:w-auto shadow-sm"
-          >
-            <span>+ Write New Blog</span>
-          </Link>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0 w-full sm:w-auto">
+            <Link
+              href="/admin/blogs/queue"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-luxury-accent/60 bg-luxury-highlight hover:bg-luxury-card text-luxury-text text-xs uppercase tracking-widest font-mono transition-colors shadow-sm"
+            >
+              <span className="text-luxury-accent font-bold">✦</span>
+              <span>Auto Queue Drafter</span>
+            </Link>
+
+            <Link
+              href="/admin/blogs/new"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-luxury-black text-white hover:bg-luxury-accent transition-colors text-xs uppercase tracking-widest font-mono shadow-sm"
+            >
+              <span>+ Write New Blog</span>
+            </Link>
+          </div>
         </div>
 
         {/* Action Notification */}
@@ -155,12 +165,14 @@ export default function AdminBlogsPage() {
                         <button
                           onClick={() => handleToggleStatus(item)}
                           className={`px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider rounded-sm border ${
-                            isPublished
+                            item.status === 'published'
                               ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60'
+                              : item.status === 'queued'
+                              ? 'bg-indigo-50 dark:bg-indigo-950/40 text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800/60'
                               : 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800/60'
                           }`}
                         >
-                          {isPublished ? '● Published' : '○ Draft'}
+                          {item.status === 'published' ? '● Published' : item.status === 'queued' ? '⏳ Queued' : '○ Draft'}
                         </button>
                       </div>
 
@@ -263,13 +275,15 @@ export default function AdminBlogsPage() {
                             <button
                               onClick={() => handleToggleStatus(item)}
                               className={`inline-flex items-center px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider rounded-sm transition-colors border ${
-                                isPublished
+                                item.status === 'published'
                                   ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100'
+                                  : item.status === 'queued'
+                                  ? 'bg-indigo-50 dark:bg-indigo-950/40 text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800/60 hover:bg-indigo-100'
                                   : 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800/60 hover:bg-amber-100'
                               }`}
                               title="Click to toggle status"
                             >
-                              {isPublished ? '● Published' : '○ Draft'}
+                              {item.status === 'published' ? '● Published' : item.status === 'queued' ? '⏳ Queued' : '○ Draft'}
                             </button>
                           </td>
                           <td className="py-3.5 px-5 text-right space-x-3 font-mono text-[11px] whitespace-nowrap">
