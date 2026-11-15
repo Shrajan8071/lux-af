@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Editorial Creator Platform — The Luxury Companion Website Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════ EXACT A4 PRINT STANDARDS ══════════════ */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+:root {
+  --ivory: #FBF9F5;
+  --ivory-card: #FFFFFF;
+  --white: #FFFFFF;
+  --charcoal: #181715;
+  --charcoal-soft: #23211E;
+  --charcoal-card: #1C1A17;
+  --warm-grey: #66605B;
+  --muted: #968F89;
+  --accent: #B88E5E;
+  --accent-gold: #C5A070;
+  --accent-light: #F4ECE1;
+  --accent-border: rgba(184, 142, 94, 0.35);
+  --border: #E5DFD7;
+  --border-dark: rgba(255, 255, 255, 0.1);
+  --dark-bg: #12110F;
+  --dark-surface: #1A1815;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html {
+  background: #E9E6E1;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--charcoal);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════ EXACT A4 DIMENSIONS (210mm x 297mm) ══════════════ */
+.page {
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  margin: 0 auto 30px;
+  background: var(--white);
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  box-shadow: 0 16px 50px rgba(0,0,0,0.14), 0 2px 10px rgba(0,0,0,0.06);
+  page-break-after: always;
+  break-after: page;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.page-inner {
+  padding: 38px 46px 36px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.page-inner.dark {
+  background: var(--dark-bg);
+  color: #EDE8E2;
+}
+
+.page-inner.ivory {
+  background: var(--ivory);
+}
+
+/* ══════════════ TYPOGRAPHY & MOTIFS ══════════════ */
+.serif { font-family: 'Playfair Display', Georgia, serif; }
+.italic { font-style: italic; }
+
+.eyebrow {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.rule-gold {
+  width: 36px;
+  height: 2px;
+  background: var(--accent-gold);
+  margin-bottom: 12px;
+}
+
+.h1-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: var(--charcoal);
+  margin-bottom: 8px;
+}
+.h1-title.dark { color: #FFFFFF; }
+.h1-title em { color: var(--accent-gold); font-style: italic; }
+
+.section-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--warm-grey);
+  line-height: 1.65;
+  max-width: 620px;
+  margin-bottom: 18px;
+}
+.section-desc.dark { color: rgba(255, 255, 255, 0.65); }
+
+/* ══════════════ BROWSER CHROME MOCKUP ══════════════ */
+.browser-chrome {
+  background: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+.browser-chrome.dark-frame {
+  background: var(--charcoal-card);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.browser-header {
+  background: #F0ECE6;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.browser-chrome.dark-frame .browser-header {
+  background: #23201D;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.dot-red { background: #FF5F56; }
+.dot-yellow { background: #FFBD2E; }
+.dot-green { background: #27C93F; }
+
+.browser-url {
+  flex: 1;
+  background: var(--white);
+  border-radius: 3px;
+  padding: 3px 8px;
+  font-size: 9px;
+  font-family: monospace;
+  color: var(--warm-grey);
+  margin-left: 6px;
+  border: 1px solid rgba(0,0,0,0.05);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.browser-chrome.dark-frame .browser-url {
+  background: #181614;
+  color: rgba(255,255,255,0.55);
+  border-color: rgba(255,255,255,0.08);
+}
+
+.browser-screen {
+  overflow: hidden;
+  background: #FAF8F5;
+}
+.browser-screen img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* ══════════════ COVER PAGE (PAGE 1) ══════════════ */
+.cover-wrap {
+  width: 100%;
+  height: 100%;
+  background: var(--dark-bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 52px 34px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.cover-wrap::before {
+  content: '';
+  position: absolute;
+  top: -160px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 650px;
+  height: 440px;
+  background: radial-gradient(ellipse, rgba(197, 160, 112, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cover-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  right: -80px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(ellipse, rgba(184, 142, 94, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cover-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.cover-monogram {
+  width: 50px;
+  height: 50px;
+  border: 1.5px solid rgba(197, 160, 112, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  border-radius: 2px;
+}
+.cover-monogram span {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--accent-gold);
+  font-style: italic;
+}
+
+.cover-badge {
+  display: inline-block;
+  padding: 5px 16px;
+  border: 1px solid rgba(197, 160, 112, 0.35);
+  border-radius: 100px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 16px;
+  background: rgba(197, 160, 112, 0.06);
+}
+
+.cover-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+}
+.cover-headline em {
+  font-style: italic;
+  color: var(--accent-gold);
+  display: block;
+}
+
+.cover-lead {
+  font-size: 13.5px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto 18px;
+}
+
+.cover-credentials {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 0;
+  margin-bottom: 18px;
+}
+
+.cred-box { text-align: center; }
+.cred-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.cred-num span { color: var(--accent-gold); }
+.cred-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.cover-footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 8.5px;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ══════════════ PROBLEM / SOLUTION (PAGE 2) ══════════════ */
+.problem-solution-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.ps-card {
+  border-radius: 4px;
+  padding: 22px 20px;
+}
+.ps-card.problem {
+  background: #FFF7F5;
+  border: 1px solid #F1D4CD;
+  border-top: 3px solid #D9534F;
+}
+.ps-card.solution {
+  background: var(--charcoal-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 3px solid var(--accent-gold);
+  color: #FFFFFF;
+}
+
+.ps-header {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ps-card.problem .ps-header { color: #D9534F; }
+.ps-card.solution .ps-header { color: var(--accent-gold); }
+
+.ps-list { list-style: none; }
+.ps-list li {
+  font-size: 11.5px;
+  padding: 7px 0 7px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  line-height: 1.45;
+}
+.ps-card.solution .ps-list li {
+  color: rgba(255, 255, 255, 0.78);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.ps-card.problem .ps-list li { color: var(--warm-grey); }
+.ps-card.problem .ps-list li::before {
+  content: '✕';
+  position: absolute;
+  left: 0;
+  color: #D9534F;
+  font-weight: 700;
+  font-size: 10px;
+}
+.ps-card.solution .ps-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent-gold);
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.luxury-pullquote {
+  background: linear-gradient(135deg, var(--accent) 0%, #8E683E 100%);
+  border-radius: 4px;
+  padding: 22px 26px;
+  color: #FFFFFF;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.lq-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 54px;
+  line-height: 0.8;
+  color: rgba(255, 255, 255, 0.28);
+  flex-shrink: 0;
+}
+.lq-body p {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+.lq-body span {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ══════════════ DUAL THEME SHOWCASE (PAGE 3) ══════════════ */
+.theme-duo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.theme-card-tag {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.badge-pill {
+  padding: 2px 7px;
+  border-radius: 100px;
+  font-size: 7.5px;
+  letter-spacing: 1px;
+}
+.badge-pill.light { background: #EFEBE5; color: var(--charcoal); }
+.badge-pill.dark { background: #2A2621; color: var(--accent-gold); }
+
+.feature-callout-strip {
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.fcs-item h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 2px;
+  color: var(--charcoal);
+}
+.fcs-item p {
+  font-size: 10px;
+  color: var(--warm-grey);
+  line-height: 1.45;
+}
+
+/* ══════════════ GEMINI AI ENGINE (PAGE 4) ══════════════ */
+.ai-page-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 18px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+.ai-step-card {
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  position: relative;
+}
+.ai-step-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 3px; height: 100%;
+  background: var(--accent-gold);
+}
+.ai-step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.ai-step-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 2px;
+}
+.ai-step-desc {
+  font-size: 10px;
+  color: var(--warm-grey);
+  line-height: 1.4;
+}
+
+.ai-showcase-box {
+  background: var(--charcoal-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 16px 20px;
+  color: #FFFFFF;
+}
+.ai-box-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: var(--accent-gold);
+  margin-bottom: 4px;
+}
+.ai-box-p {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.55;
+}
+
+/* ══════════════ AUTO-QUEUE & JOURNAL (PAGE 5) ══════════════ */
+.queue-journal-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.queue-feature-list {
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.qf-item h4 {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.qf-item h4::before {
+  content: '✦';
+  color: var(--accent-gold);
+  font-size: 8px;
+}
+.qf-item p {
+  font-size: 9.5px;
+  color: var(--warm-grey);
+  line-height: 1.45;
+}
+
+/* ══════════════ LIVE ADMIN CUSTOMIZER (PAGE 6) ══════════════ */
+.admin-custom-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.control-matrix {
+  background: var(--charcoal-card);
+  border-radius: 4px;
+  padding: 16px 20px;
+  color: #FFFFFF;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 18px;
+}
+.cm-item h4 {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-gold);
+  margin-bottom: 2px;
+  letter-spacing: 0.2px;
+}
+.cm-item p {
+  font-size: 9.5px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.45;
+}
+
+/* ══════════════ NICHES & EXPANDED CUSTOMIZATION (PAGE 7) ══════════════ */
+.niche-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.ng-card {
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 10px;
+  text-align: center;
+}
+.ng-icon { font-size: 20px; margin-bottom: 4px; display: block; }
+.ng-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.ng-desc {
+  font-size: 9.5px;
+  color: var(--warm-grey);
+  line-height: 1.4;
+}
+
+.concierge-box {
+  background: linear-gradient(135deg, var(--charcoal-card) 0%, #2A241F 100%);
+  border: 1px solid rgba(197, 160, 112, 0.3);
+  border-radius: 4px;
+  padding: 20px 24px;
+  color: #FFFFFF;
+}
+.cb-header {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 6px;
+}
+.cb-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.cb-desc {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+.cb-perks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 14px;
+}
+.cb-perk {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cb-perk::before {
+  content: '✓';
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+/* ══════════════ TIMELINE & CLOSING CTA (PAGE 8) ══════════════ */
+.timeline-track {
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 20px;
+}
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent-gold), rgba(197, 160, 112, 0.2));
+}
+
+.tl-item {
+  position: relative;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 12px;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 1px var(--accent-gold);
+}
+.tl-badge {
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+  height: fit-content;
+  white-space: nowrap;
+}
+.tl-content h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 2px;
+}
+.tl-content p {
+  font-size: 10.5px;
+  color: var(--warm-grey);
+  line-height: 1.45;
+}
+
+.contact-hero-card {
+  background: var(--charcoal-card);
+  border: 1px solid rgba(197, 160, 112, 0.35);
+  border-radius: 4px;
+  padding: 20px 24px;
+  text-align: center;
+  color: #FFFFFF;
+}
+.ch-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.ch-sub {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 14px;
+}
+.ch-channels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.ch-item { text-align: center; }
+.ch-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 3px;
+}
+.ch-link {
+  font-size: 11.5px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-all;
+}
+.ch-link:hover {
+  text-decoration: underline;
+  color: var(--accent-gold);
+}
+
+/* ══════════════ PRINT STYLES ══════════════ */
+@media print {
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    width: 210mm !important;
+    height: 297mm !important;
+  }
+  .page {
+    margin: 0 !important;
+    box-shadow: none !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-before: auto !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 1: THE HAUTE LUXURY COVER
+═══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="cover-wrap">
+    <div class="cover-header">
+      <div class="cover-monogram"><span>E</span></div>
+      <div class="cover-badge">An Exclusive Creator Platform · 2026</div>
+      <h1 class="cover-headline">
+        Your Instagram,
+        <em>Elevated into an Editorial House.</em>
+      </h1>
+      <p class="cover-lead">
+        A bespoke, magazine-grade companion website that transforms fleeting 24-hour social stories into an enduring, high-commission editorial catalogue — powered by Gemini AI, automated drip publishing, and your personal voice.
+      </p>
+    </div>
+
+    <div>
+      <div class="contact-hero-card" style="margin-bottom: 18px; background: rgba(28, 26, 23, 0.75); backdrop-filter: blur(8px);">
+        <div class="ch-title">Experience the Live Demonstration</div>
+        <p class="ch-sub">
+          Explore the live reference architecture on desktop or mobile right now:
+        </p>
+        <div class="ch-channels">
+          <div class="ch-item">
+            <div class="ch-label">Live Platform Demo</div>
+            <a class="ch-link" href="https://shrajan-tech.vercel.app/" target="_blank">shrajan-tech.vercel.app</a>
+          </div>
+          <div class="ch-item">
+            <div class="ch-label">Direct Instagram</div>
+            <a class="ch-link" href="https://www.instagram.com/gadget.cache/" target="_blank">@gadget.cache</a>
+          </div>
+          <div class="ch-item">
+            <div class="ch-label">Direct Inquiries</div>
+            <a class="ch-link" href="mailto:shrajanguptahome@gmail.com">shrajanguptahome@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-credentials">
+        <div class="cred-box">
+          <div class="cred-num">30<span>s</span></div>
+          <div class="cred-label">AI Review Generator</div>
+        </div>
+        <div class="cred-box">
+          <div class="cred-num"><span>∞</span></div>
+          <div class="cred-label">Evergreen Commission</div>
+        </div>
+        <div class="cred-box">
+          <div class="cred-num">1<span>-Click</span></div>
+          <div class="cred-label">Dark & Light Modes</div>
+        </div>
+        <div class="cred-box">
+          <div class="cred-num">72<span>h</span></div>
+          <div class="cred-label">Live Concierge Setup</div>
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <div>MAISON & EDITORIAL · CREATOR ARCHITECTURE</div>
+        <div>DEMO: SHRAJAN-TECH.VERCEL.APP</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 2: THE MONETIZATION GAP VS. THE SOLUTION
+═══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner ivory">
+    <div>
+      <div class="eyebrow">The Creator Dilemma</div>
+      <div class="rule-gold"></div>
+      <h2 class="h1-title">Social Algorithms Expire.<br><em>Your Editorial Catalogue Never Does.</em></h2>
+      <p class="section-desc">
+        Every week, creators lose thousands in affiliate commissions simply because Instagram stories disappear after 24 hours, bio link aggregators look cluttered, and followers are forced to spam comments asking for links.
+      </p>
+
+      <div class="problem-solution-grid">
+        <div class="ps-card problem">
+          <div class="ps-header">The Social Media Bottleneck</div>
+          <ul class="ps-list">
+            <li>Story affiliate links die after 24 hours, vanishing into the archive.</li>
+            <li>Followers comment "Link please?" on Reels months later with no automated way to buy.</li>
+            <li>Linktree & generic bio tools look like spammy multi-link directories.</li>
+            <li>Luxury brands offer lower sponsorship rates when your only presence is a social profile.</li>
+            <li>Zero Google search visibility or organic discovery for your product recommendations.</li>
+          </ul>
+        </div>
+
+        <div class="ps-card solution">
+          <div class="ps-header">The Custom Editorial Advantage</div>
+          <ul class="ps-list">
+            <li>Every recommended piece gets a stable 4-digit article number (e.g., #1006).</li>
+            <li>Tell your audience: "Link is Article #1006 in bio" — permanent and friction-free.</li>
+            <li>Bespoke aesthetic modeled after <em>Vogue</em>, <em>GQ</em>, and <em>Architectural Digest</em>.</li>
+            <li>Positions you as a respected curator, justifying 30% to 50% higher brand sponsorship fees.</li>
+            <li>Built-in Google SEO indexation turns everyday reviews into permanent passive search traffic.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="luxury-pullquote">
+      <div class="lq-mark">“</div>
+      <div class="lq-body">
+        <p>Your Instagram Story expires in 24 hours. Your custom editorial catalogue earns affiliate commissions for years.</p>
+        <span>— The Foundational Shift from Influencer to Media Brand</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 3: DUAL THEME SHOWCASE (LIGHT & DARK MODES)
+═══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner" style="background:#F4F1EC;">
+    <div>
+      <div class="eyebrow">Aesthetic Fluidity</div>
+      <div class="rule-gold"></div>
+      <h2 class="h1-title">Effortless Dual Aesthetics:<br><em>Ivory Day & Velvet Night.</em></h2>
+      <p class="section-desc">
+        Your audience accesses your content in coffee shops and in bed at midnight. With one instant toggle, your website adapts between a warm Italian paper light mode and a deep velvet charcoal dark mode.
+      </p>
+
+      <div class="theme-duo-grid">
+        <!-- Light Mode View -->
+        <div>
+          <div class="theme-card-tag">
+            <span>Editorial Warm Ivory</span>
+            <span class="badge-pill light">Light Mode</span>
+          </div>
+          <div class="browser-chrome">
+            <div class="browser-header">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="browser-url">shrajan-tech.vercel.app [Light Theme]</span>
+            </div>
+            <div class="browser-screen" style="height: 380px;">
+              <img src="./screenshots/home-light.png" alt="Catalogue Light Mode" style="height:380px; object-fit:cover; object-position:top;" onerror="this.src='screenshots/home-light.png';" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Dark Mode View -->
+        <div>
+          <div class="theme-card-tag">
+            <span>Architectural Charcoal</span>
+            <span class="badge-pill dark">Dark Mode</span>
+          </div>
+          <div class="browser-chrome dark-frame">
+            <div class="browser-header">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="browser-url">shrajan-tech.vercel.app [Dark Theme]</span>
+            </div>
+            <div class="browser-screen" style="height: 380px; background:#12110F;">
+              <img src="./screenshots/home-dark.png" alt="Catalogue Dark Mode" style="height:380px; object-fit:cover; object-position:top;" onerror="this.src='screenshots/home-dark.png';" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-callout-strip">
+      <div class="fcs-item">
+        <h4>Persistent State</h4>
+        <p>Remembers reader theme choice across visits with zero screen flickering or flash.</p>
+      </div>
+      <div class="fcs-item">
+        <h4>Uncompromised Contrast</h4>
+        <p>WCAG AA accessible ratios ensure readability whether browsing under bright sunlight or dark rooms.</p>
+      </div>
+      <div class="fcs-item">
+        <h4>Uncropped Imagery</h4>
+        <p>Clean containment prevents product photography from ever being awkwardly cropped or stretched.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 4: THE GEMINI AI CONTENT ENGINE
+═══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner ivory">
+    <div>
+      <div class="eyebrow">Zero-Effort Publishing</div>
+      <div class="rule-gold"></div>
+      <h2 class="h1-title">The Gemini AI Engine:<br><em>Raw Notes to Published Review in 30 Seconds.</em></h2>
+      <p class="section-desc">
+        You are a content creator, not a full-time copywriter. The platform's integrated Gemini API analyzes raw product specs or notes and writes a complete 3-paragraph luxury review plus your personal "My Take" appraisal.
+      </p>
+
+      <div class="ai-page-layout">
+        <div>
+          <div class="ai-step-card">
+            <div class="ai-step-num">01</div>
+            <div class="ai-step-title">Paste Raw Notes & Affiliate URL</div>
+            <p class="ai-step-desc">
+              Drop in raw manufacturer specs or notes from your video shoot. Enter purchase price and star rating.
+            </p>
+          </div>
+
+          <div class="ai-step-card">
+            <div class="ai-step-num">02</div>
+            <div class="ai-step-title">Gemini AI Editorial Synthesis</div>
+            <p class="ai-step-desc">
+              Our tuned editorial prompt crafts an authoritative 3-paragraph material analysis focused on industrial craft.
+            </p>
+          </div>
+
+          <div class="ai-step-card">
+            <div class="ai-step-num">03</div>
+            <div class="ai-step-title">Automatic "My Take" Appraisal</div>
+            <p class="ai-step-desc">
+              Generates a signature first-person opinion segment summarizing who the item is best for, in your authentic voice.
+            </p>
+          </div>
+
+          <div class="ai-step-card">
+            <div class="ai-step-num">04</div>
+            <div class="ai-step-title">Instant Live Publishing</div>
+            <p class="ai-step-desc">
+              Preview live, attach your Instagram Reel video, and hit "Publish." Done in under half a minute.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="theme-card-tag">
+            <span>Live Article Output</span>
+            <span class="badge-pill light">Finished Essay</span>
+          </div>
+          <div class="browser-chrome">
+            <div class="browser-header">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="browser-url">shrajan-tech.vercel.app/blogs/...</span>
+            </div>
+            <div class="browser-screen" style="height: 380px;">
+              <img src="./screenshots/journal-inside-top.png" alt="Journal Article" style="height:380px; object-fit:cover; object-position:top;" onerror="this.src='screenshots/journal-inside-top.png';" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-showcase-box">
+      <div class="ai-box-title">Ethical & Honest by Architecture</div>
+      <p class="ai-box-p">
+        Unlike generic AI chatbots that hallucinate fake claims, our engine is architected with strict boundary instructions: it never invents unverified specifications, false test results, or artificial endorsements. Every piece of copy remains 100% reviewable and editable before your audience sees it.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 5: AUTOMATED BLOG QUEUE & DRIP PUBLISHING
+═══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner" style="background:#F7F4EE;">
+    <div>
+      <div class="eyebrow">Autonomous Consistency</div>
+      <div class="rule-gold"></div>
+      <h2 class="h1-title">The Auto-Queue Drip System:<br><em>Consistent Publishing While You Sleep.</em></h2>
+      <p class="section-desc">
+        Consistency is the secret to SEO ranking and follower retention. With the Auto-Queue engine, you can draft 10 articles in one afternoon and let the platform drip-release them on your scheduled cadence.
+      </p>
+
+      <div class="queue-journal-split">
+        <!-- Admin Queue Screen -->
+        <div>
+          <div class="theme-card-tag">
+            <span>Admin Auto-Queue Dashboard</span>
+            <span class="badge-pill dark">Backend Scheduler</span>
+          </div>
+          <div class="browser-chrome dark-frame">
+            <div class="browser-header">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="browser-url">shrajan-tech.vercel.app/admin/blogs/queue</span>
+            </div>
+            <div class="browser-screen" style="height: 340px; background:#181614;">
+              <img src="./screenshots/admin-auto-queue.png" alt="Auto-Queue Dashboard" style="height:340px; object-fit:cover; object-position:top;" onerror="this.src='screenshots/admin-auto-queue.png';" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Journal Output Screen -->
+        <div>
+          <div class="theme-card-tag">
+            <span>Public Editorial Journal</span>
+            <span class="badge-pill light">Live Reader Index</span>
+          </div>
+          <div class="browser-chrome">
+            <div class="browser-header">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="browser-url">shrajan-tech.vercel.app/blogs</span>
+            </div>
+            <div class="browser-screen" style="height: 340px;">
+              <img src="./screenshots/journal-home.png" alt="Live Journal" style="height:340px; object-fit:cover; object-position:top;" onerror="this.src='screenshots/journal-home.png';" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="queue-feature-list">
+      <div class="qf-item">
+        <h4>Automated Cron Scheduling</h4>
+        <p>Vercel-native cron jobs evaluate your queue hourly and promote queued drafts to published articles automatically.</p>
+      </div>
+      <div class="qf-item">
+        <h4>Visual Drag & Drop Reordering</h4>
+        <p>Reprioritize upcoming drops in seconds with numbered queue badges and instant reordering controls.</p>
+      </div>
+      <div class="qf-item">
+        <h4>Source-Dump Essay Transformer</h4>
+        <p>Dump unedited notes, audio transcripts, or reference links — the engine formats them into structured essays.</p>
+      </div>
+      <div class="qf-item">
+        <h4>Evergreen Traffic Compounding</h4>
+        <p>Each newly published journal entry targets niche search queries, bringing high-intent organic visitors daily.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 6: TOTAL NO-CODE CONTROL & SITE SETTINGS
+═══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner ivory">
+    <div>
+      <div class="eyebrow">Zero Code Required</div>
+      <div class="rule-gold"></div>
+      <h2 class="h1-title">Total Creative Autonomy:<br><em>Customize Every Pixel From Your Phone.</em></h2>
+      <p class="section-desc">
+        You are never locked into a fixed template. The live Admin Settings console empowers you to rebrand your entire website, change copy, adjust currencies, and manage links instantly with no developer needed.
+      </p>
+
+      <div class="admin-custom-split">
+        <div>
+          <div class="theme-card-tag">
+            <span>Live Site Settings Editor</span>
+            <span class="badge-pill dark">Admin Panel</span>
+          </div>
+          <div class="browser-chrome dark-frame">
+            <div class="browser-header">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="browser-url">shrajan-tech.vercel.app/admin/settings</span>
+            </div>
+            <div class="browser-screen" style="height: 330px; background:#181614;">
+              <img src="./screenshots/admin-settings.png" alt="Admin Settings" style="height:330px; object-fit:cover; object-position:top;" onerror="this.src='screenshots/admin-settings.png';" />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="theme-card-tag">
+            <span>Inventory & Affiliate Manager</span>
+            <span class="badge-pill dark">Product CRUD</span>
+          </div>
+          <div class="browser-chrome dark-frame">
+            <div class="browser-header">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="browser-url">shrajan-tech.vercel.app/admin/products</span>
+            </div>
+            <div class="browser-screen" style="height: 330px; background:#181614;">
+              <img src="./screenshots/admin-products.png" alt="Product Manager" style="height:330px; object-fit:cover; object-position:top;" onerror="this.src='screenshots/admin-products.png';" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-matrix">
+      <div class="cm-item">
+        <h4>Brand Name & Masthead</h4>
+        <p>Change your publication name, navigation tagline, and homepage headings in real-time.</p>
+      </div>
+      <div class="cm-item">
+        <h4>About Page & Philosophy</h4>
+        <p>Edit your personal backstory, curatorial principles, and brand commitments directly in Markdown.</p>
+      </div>
+      <div class="cm-item">
+        <h4>Global Currency Selector</h4>
+        <p>Switch between ₹ INR, $ USD, € EUR, or £ GBP instantly to serve your domestic or international audience.</p>
+      </div>
+      <div class="cm-item">
+        <h4>Multi-Network Affiliate Linking</h4>
+        <p>Supports Amazon, LTK, Flipkart, ShareASale, CJ, or direct merchant partnership links seamlessly.</p>
+      </div>
+      <div class="cm-item">
+        <h4>Social & Contact Sync</h4>
+        <p>Sync your active Instagram handle, YouTube channel, and business email with automatic header rendering.</p>
+      </div>
+      <div class="cm-item">
+        <h4>Google AdSense Switch</h4>
+        <p>Toggle passive display ads on or off at the footer of your catalogue with zero layout shift.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 7: NICHE TAILORING & EXPANDED CUSTOMIZATION
+═══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner" style="background:#F4F1EC;">
+    <div>
+      <div class="eyebrow">Limitless Adaptation</div>
+      <div class="rule-gold"></div>
+      <h2 class="h1-title">Built For Every Creator Niche.<br><em>And We Help You Customize More.</em></h2>
+      <p class="section-desc">
+        Whether your domain is tech hardware, luxury skincare, quiet luxury fashion, or architectural interiors, the platform morphs to reflect your specific world.
+      </p>
+
+      <div class="niche-grid-4">
+        <div class="ng-card">
+          <span class="ng-icon">💻</span>
+          <div class="ng-title">Tech & Gadgets</div>
+          <p class="ng-desc">Desk setups, cameras, audio, mobile hardware with deep spec analysis.</p>
+        </div>
+        <div class="ng-card">
+          <span class="ng-icon">💄</span>
+          <div class="ng-title">Beauty & Skincare</div>
+          <p class="ng-desc">Fragrance accords, routine breakdowns, vanity staples, texture details.</p>
+        </div>
+        <div class="ng-card">
+          <span class="ng-icon">👗</span>
+          <div class="ng-title">Fashion & Style</div>
+          <p class="ng-desc">Capsule wardrobes, lookbooks, artisanal leathercraft, jewelry curation.</p>
+        </div>
+        <div class="ng-card">
+          <span class="ng-icon">🏠</span>
+          <div class="ng-title">Home & Interiors</div>
+          <p class="ng-desc">Lighting, ceramics, tactile materials, furniture, intentional living.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concierge-box">
+      <div class="cb-header">Concierge Engineering Support</div>
+      <div class="cb-title">Need Something Bespoke? We Build It For You.</div>
+      <p class="cb-desc">
+        Every creator has a distinct identity. If you need bespoke features, customized color palettes, or unique layouts beyond the core platform, our engineering team implements them for you directly.
+      </p>
+
+      <div class="cb-perks">
+        <div class="cb-perk">Custom font pairing & branded color palettes</div>
+        <div class="cb-perk">Custom domain connection (yourname.com)</div>
+        <div class="cb-perk">Newsletter capture & email list integration</div>
+        <div class="cb-perk">VIP one-on-one onboarding & product migration</div>
+        <div class="cb-perk">Custom category taxonomy & filters</div>
+        <div class="cb-perk">Dedicated high-speed Vercel CDN deployment</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 8: 72-HOUR ONBOARDING & DIRECT INVITATION
+═══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner ivory">
+    <div>
+      <div class="eyebrow">Seamless Launch</div>
+      <div class="rule-gold"></div>
+      <h2 class="h1-title">From Concept to Live Website<br><em>In Under 72 Hours.</em></h2>
+      <p class="section-desc">
+        You don't need to understand databases, Vercel deployments, or DNS records. We handle 100% of the technical setup and deliver a turnkey publication ready for your Instagram bio.
+      </p>
+
+      <div class="timeline-track">
+        <div class="tl-item">
+          <div class="tl-badge">Day 1</div>
+          <div class="tl-content">
+            <h4>Vision & Asset Handover</h4>
+            <p>Share your Instagram handle, brand color preferences, and 5–10 favorite products you want featured.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-badge">Day 2</div>
+          <div class="tl-content">
+            <h4>Bespoke Platform Build & AI Seeding</h4>
+            <p>We deploy your isolated Supabase database, configure the Gemini AI engine, and load your initial reviews & essays.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-badge">Day 3</div>
+          <div class="tl-content">
+            <h4>Private Preview & Live Handover</h4>
+            <p>You review the live preview on your phone. Once approved, we connect your custom domain and hand over your private admin credentials.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="contact-hero-card">
+        <div class="ch-title">Experience the Live Demonstration</div>
+        <p class="ch-sub">
+          Explore the live reference architecture on desktop or mobile right now to see the exact reading experience your followers will enjoy:
+        </p>
+
+        <div class="ch-channels">
+          <div class="ch-item">
+            <div class="ch-label">Live Platform Demo</div>
+            <a class="ch-link" href="https://shrajan-tech.vercel.app/" target="_blank">shrajan-tech.vercel.app</a>
+          </div>
+          <div class="ch-item">
+            <div class="ch-label">Direct Instagram</div>
+            <a class="ch-link" href="https://www.instagram.com/gadget.cache/" target="_blank">@gadget.cache</a>
+          </div>
+          <div class="ch-item">
+            <div class="ch-label">Direct Inquiries</div>
+            <a class="ch-link" href="mailto:shrajanguptahome@gmail.com">shrajanguptahome@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 14px; text-align: center; font-size: 8.5px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase;">
+        Turnkey Setup · Zero Maintenance Burden · 100% Creator Owned
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -34,3 +34,6 @@ yarn-error.log*
 
 # PDF reference
 *.pdf
+!Luxury_Creator_Platform_Pitch.pdf
+!public/**/*.pdf
+!public/*.pdf
